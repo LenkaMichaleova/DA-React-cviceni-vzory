@@ -5,11 +5,7 @@ export const ListItem = ({ item, onSelect, number}) => {
 
   const toggleSelected = () => {
     setSelected(!selected);
-    if (selected) {
-      onSelect(number - 1)
-    } else {
-      onSelect(number + 1)
-    }
+    selected ? onSelect(number - 1) : onSelect(number + 1)
   };
 
   return (
