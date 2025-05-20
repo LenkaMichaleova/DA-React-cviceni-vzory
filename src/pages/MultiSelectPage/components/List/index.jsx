@@ -3,6 +3,7 @@ import { ListItem } from '../ListItem';
 
 export const List = () => {
   const [items, setItems] = useState(null);
+  const [pocet, setPocet] = useState(0)
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -14,6 +15,10 @@ export const List = () => {
     fetchItems();
   }, []);
 
+  const handlePocet = (cislo) => {
+    setPocet(cislo)
+  }
+
   if (items === null) {
     return <p>Loading...</p>;
   }
@@ -21,8 +26,9 @@ export const List = () => {
   return (
     <div className="list">
       {items.map((item) => (
-        <ListItem key={item.id} item={item} />
+        <ListItem key={item.id} item={item} onSelect={handlePocet} number={pocet}/>
       ))}
+      <div>Počet itemů: {pocet}</div>
     </div>
   );
 };

@@ -1,14 +1,19 @@
 import { useState } from 'react';
 
-export const ListItem = ({ item }) => {
+export const ListItem = ({ item, onSelect, number}) => {
   const [selected, setSelected] = useState(false);
-  
+
   const toggleSelected = () => {
     setSelected(!selected);
+    if (selected) {
+      onSelect(number - 1)
+    } else {
+      onSelect(number + 1)
+    }
   };
 
   return (
-    <div
+    <div 
       className={`panel${selected ? ' panel--selected' : ''}`}
       onClick={toggleSelected}
     >
