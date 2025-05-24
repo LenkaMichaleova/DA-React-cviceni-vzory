@@ -16,7 +16,7 @@ export const List = () => {
   }, []);
 
   const handlePocet = (cislo) => {
-    setPocet(cislo)
+    setPocet(pocet + cislo)
   }
 
   if (items === null) {
@@ -26,7 +26,7 @@ export const List = () => {
   return (
     <div className="list">
       {items.map((item) => (
-        <ListItem key={item.id} item={item} onSelect={handlePocet} number={pocet}/>
+        <ListItem key={item.id} item={item} onSelect={handlePocet}/>
       ))}
       <div>Počet itemů: {pocet}</div>
     </div>

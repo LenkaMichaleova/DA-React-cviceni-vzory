@@ -11,14 +11,15 @@ export const List = () => {
       const response = await fetch('http://localhost:4000/api/items');
       const json = await response.json();
       setItems(json.data);
-      console.log(json.data)
     };
 
     fetchItems();
   }, []);
 
   const handleCalorie = (cislo) => {
-    setCalorie(cislo)
+    const selectedItem = items.find((item) => Number(selectedId) === item.id)
+    setCalorie(selectedItem.nutrients.energy.value)
+    setSelectedId(cislo)
   }
 
   if (items === null) {
@@ -32,8 +33,7 @@ export const List = () => {
           key={item.id}
           item={item}
           selected={item.id === selectedId}
-          onSelect={setSelectedId}
-          onSelectCalories={handleCalorie}
+          onSelect={handleCalorie}
         />
       ))}
       <div>Počet kalorií u vybrané položky: {calorie} kcal</div>
